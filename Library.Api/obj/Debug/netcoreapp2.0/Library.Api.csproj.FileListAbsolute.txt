@@ -1,0 +1,11 @@
+c:\users\pablo.sanchez\source\repos\Library.Api\Library.Api\bin\Debug\netcoreapp2.0\Library.Api.deps.json
+c:\users\pablo.sanchez\source\repos\Library.Api\Library.Api\bin\Debug\netcoreapp2.0\Library.Api.runtimeconfig.json
+c:\users\pablo.sanchez\source\repos\Library.Api\Library.Api\bin\Debug\netcoreapp2.0\Library.Api.runtimeconfig.dev.json
+c:\users\pablo.sanchez\source\repos\Library.Api\Library.Api\bin\Debug\netcoreapp2.0\Library.Api.dll
+c:\users\pablo.sanchez\source\repos\Library.Api\Library.Api\bin\Debug\netcoreapp2.0\Library.Api.pdb
+c:\users\pablo.sanchez\source\repos\Library.Api\Library.Api\obj\Debug\netcoreapp2.0\Library.Api.csproj.CoreCompileInputs.cache
+c:\users\pablo.sanchez\source\repos\Library.Api\Library.Api\obj\Debug\netcoreapp2.0\Library.Api.AssemblyInfoInputs.cache
+c:\users\pablo.sanchez\source\repos\Library.Api\Library.Api\obj\Debug\netcoreapp2.0\Library.Api.AssemblyInfo.cs
+c:\users\pablo.sanchez\source\repos\Library.Api\Library.Api\obj\Debug\netcoreapp2.0\Library.Api.dll
+c:\users\pablo.sanchez\source\repos\Library.Api\Library.Api\obj\Debug\netcoreapp2.0\Library.Api.pdb
+c:\users\pablo.sanchez\source\repos\Library.Api\Library.Api\obj\Debug\netcoreapp2.0\Library.Api.csprojAssemblyReference.cache

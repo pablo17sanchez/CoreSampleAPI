@@ -63,7 +63,9 @@ namespace Library.Api
                 cfg.CreateMap<Entities.Author, Models.AuthorsDTO>().ForMember(dest => dest.Name, opt => opt.MapFrom(src => $"{src.FirstName} {src.LastName}")).ForMember(dest => dest.Age, opt => opt.MapFrom(src => src.DateOfBirth.Year));
 
                 cfg.CreateMap<Entities.Books, Models.AuthorsDTO>();
-
+               
+               cfg.CreateMap<Models.AuthorForCreationDto, Entities.Author>().ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.FirstName)).ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.LastName)).ForMember(dest => dest.Genre, opt => opt.MapFrom(src => src.Genre));
+                cfg.CreateMap<Models.BooksForCreationDto, Entities.Books>();
             });
 
             

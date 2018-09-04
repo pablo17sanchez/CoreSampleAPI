@@ -24,6 +24,7 @@ namespace Library.Api.Entities
         public Author Author { get; set; }
 
         public Guid AuthorId { get; set; }
+      //  public String MyProperty { get; set; }
 
     }
 }

@@ -37,7 +37,7 @@ namespace Library.Api.Controllers
 
         }
 
-        [HttpGet("/api/authors/{id}")]
+        [HttpGet("{id}",Name = "GetAuthor")]
         public IActionResult GetAuthor(Guid id)
         {
             try
@@ -70,6 +70,46 @@ namespace Library.Api.Controllers
 
 
 }
+
+        [HttpPost("/api/authors")]
+        public IActionResult CreateAuthor([FromBody] AuthorForCreationDto author )  {
+            if (author==null)
+            {
+
+                return BadRequest();
+            }
+
+            var authorentity = Mapper.Map<Author>(author);
+
+            _libraryrepository.AddAuthor(authorentity);
+
+           // _libraryrepository.Save();
+
+            if (!_libraryrepository.Save())
+            {
+                return StatusCode(500, "Un problema guardando en la base de datos");
+            }
+
+
+            var authorReturn = Mapper.Map<AuthorsDTO>(authorentity);
+            try
+            {
+
+       
+
+            return CreatedAtRoute("GetAuthor", new { id = authorReturn.id },authorReturn);
+            }
+            catch (Exception ex)
+            {
+
+
+                return BadRequest(ex);
+
+            }
+
+       
+          
+        }
 
     }
 }

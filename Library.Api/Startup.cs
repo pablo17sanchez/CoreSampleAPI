@@ -11,6 +11,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Library.Api.Services;
+using System.Xml.Linq;
+using System.Xml;
+using Microsoft.AspNetCore.Mvc.Formatters;
+
 namespace Library.Api
 {
     public class Startup
@@ -28,7 +32,12 @@ namespace Library.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddMvc(sepup=> {
+                sepup.ReturnHttpNotAcceptable = true;
+                sepup.OutputFormatters.Add(new XmlDataContractSerializerOutputFormatter());
+                sepup.InputFormatters.Add(new XmlDataContractSerializerInputFormatter());
+
+            });
 
             var conectionstring = Configuration["connectionStrings:libraryDBConnectionString"];
             services.AddDbContext<LibraryContext>(o => o.UseSqlServer(conectionstring));

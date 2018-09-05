@@ -30,5 +30,14 @@ namespace Library.Api.Entities
         public ICollection<Books> Books { get; set; }
       = new List<Books>();
 
+
+
+
+
+        public Author() {
+
+            Id = Guid.NewGuid();
+            
+        }
     }
 }

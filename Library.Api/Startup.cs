@@ -75,6 +75,8 @@ namespace Library.Api
                
                cfg.CreateMap<Models.AuthorForCreationDto, Entities.Author>().ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.FirstName)).ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.LastName)).ForMember(dest => dest.Genre, opt => opt.MapFrom(src => src.Genre));
                 cfg.CreateMap<Models.BooksForCreationDto, Entities.Books>();
+
+                cfg.CreateMap<Models.BookForUpdateDto, Entities.Books>();
             });
 
             

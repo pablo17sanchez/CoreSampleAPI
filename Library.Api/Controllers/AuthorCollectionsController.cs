@@ -22,7 +22,8 @@ namespace Library.Api.Controllers
         }
 
         [HttpPost()]
-        public IActionResult CreateAuthorCollection([FromBody] IEnumerable<AuthorForCreationDto> authorforcollection) {
+        public IActionResult CreateAuthorCollection([FromBody] IEnumerable<AuthorForCreationDto> authorforcollection)
+        {
 
 
             if (authorforcollection==null)
@@ -56,7 +57,7 @@ namespace Library.Api.Controllers
         public IActionResult GetAuthorCollection(IEnumerable<Guid> ids) {
 
 
-
+            return Ok();
         }
 
     }

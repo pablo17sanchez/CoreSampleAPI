@@ -7,10 +7,11 @@ using Library.Api.Services;
 using AutoMapper;
 using Library.Api.Models;
 using Library.Api.Entities;
+using Microsoft.AspNetCore.JsonPatch;
 
 namespace Library.Api.Controllers
 {
-    [Route("api/author/{id}/books")]
+    //[Route("api/author/{id}/books")]
     public class BooksController : Controller
     {
         private ILibraryRepository _libraryrepository;
@@ -79,6 +80,95 @@ namespace Library.Api.Controllers
 
             return CreatedAtRoute("GetBookForAuthor", new { authorid = bookss.Id }, books);
         }
+
+        [HttpPut("api/author/{id}/books/{ids}")]
+        public IActionResult UpdateBooksForAuthors(Guid id,Guid ids,[FromBody] BookForUpdateDto book)
+        {
+            if (book==null)
+            {
+
+                return BadRequest();
+
+            }
+
+            if (!_libraryrepository.AuthorExist(id))
+            {
+                return NotFound();
+            }
+
+            var books = _libraryrepository.GetBookForAuthor(id, ids);
+
+            if (books==null)
+            {
+                var booktoadd = Mapper.Map<Books>(book);
+
+                _libraryrepository.AddBookForAuthor(id, booktoadd);
+
+                if (!_libraryrepository.Save())
+                {
+                    return StatusCode(500, "Error al guardar nuevo libro");
+                }
+
+                else
+                {
+
+                }
+            }
+
+
+            Mapper.Map(book, books);
+            _libraryrepository.UpdateBookForAuthor(books);
+
+            if (!_libraryrepository.Save())
+            {
+
+                return StatusCode(500, "Hubo un error al guardar en la base de datos por favor contactese con el administrador ");
+
+
+            }
+            return NoContent();
+        }
+
+        [HttpPatch("api/author/{id}/books/{ids}")]
+        public IActionResult PartiallyUpdateBookForAuthors(Guid id,Guid ids,[FromBody]JsonPatchDocument<BookForUpdateDto> pachtbook)
+        {
+            if (pachtbook==null)
+            {
+
+                return BadRequest();
+
+            }
+            if (!_libraryrepository.AuthorExist(id))
+            {
+                return NotFound();
+            }
+            var books = _libraryrepository.GetBookForAuthor(id, ids);
+
+
+            if (books == null)
+            {
+
+                return NotFound();
+            }
+
+            var bookspatch = Mapper.Map<BookForUpdateDto>(pachtbook);
+
+            pachtbook.ApplyTo(bookspatch);
+
+            Mapper.Map(bookspatch, books);
+
+            _libraryrepository.UpdateBookForAuthor(books);
+
+            if (!_libraryrepository.Save())
+            {
+
+                return StatusCode(500, "Error al guardar en la base de datos");
+            }
+                return NoContent();
+
+        }
+
+
 
     }
 }
